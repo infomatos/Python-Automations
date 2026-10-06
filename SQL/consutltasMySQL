@@ -2,30 +2,30 @@ from sshtunnel import SSHTunnelForwarder
 import mysql.connector
 import pandas as pd
 
-SSH_HOST = '10.99.60.174'
-SSH_PORT = 22
+SSH_HOST = '00.00.00.000'
+SSH_PORT = 00
 SSH_USER = 'root'
-SSH_PASSWORD = 'infracloud2@23'
+SSH_PASSWORD = ''
 
 MYSQL_HOST = '127.0.0.1'       
-MYSQL_PORT = 3306
+MYSQL_PORT = 0000
 MYSQL_USER = 'root'             
-MYSQL_PASSWORD = 'infracloud2@23' 
-MYSQL_DB = 'vassolutions_controledemandas'    
+MYSQL_PASSWORD = '' 
+MYSQL_DB = 'schemma-DB'    
 
-# criar o túnel SSH e abrir uma porta local que aponta para 127.0.0.1:3306 no servidor
+# criar o túnel SSH e abrir uma porta local que aponta para 127.0.0.1:porta no servidor
 with SSHTunnelForwarder(
     (SSH_HOST, SSH_PORT),
     ssh_username=SSH_USER,
     ssh_password=SSH_PASSWORD,
     remote_bind_address=(MYSQL_HOST, MYSQL_PORT),
-    local_bind_address=('127.0.0.1', 3307)  # porta local livre
+    local_bind_address=('127.0.0.1', porta)  # porta local livre
 ) as tunnel:
 
     # conectar no MySQL ATRAVÉS do túnel
     conn = mysql.connector.connect(
         host='127.0.0.1',
-        port=tunnel.local_bind_port,  # 3307
+        port=tunnel.local_bind_port,  # porta
         user=MYSQL_USER,
         password=MYSQL_PASSWORD,
         database=MYSQL_DB
@@ -97,7 +97,7 @@ with SSHTunnelForwarder(
 
     #df = pd.read_sql(query, conn)
     
-    # caminho = r"C:\Users\F8091772\TIM\NFV Infrastructure - BASE\InfraCloud Demanda.csv"
+    # caminho = r"caminho/de/saida"
     # # ==== exportar CSV =======
     # df.to_csv(caminho, index=False)
     
@@ -105,7 +105,7 @@ with SSHTunnelForwarder(
     
     
     
-    # caminho = r"C:\Users\F8091772\TIM\NFV Infrastructure - BASE\InfraCloud Recebida.csv"
+    # caminho = r"caminho/saida"
     # # ==== exportar CSV =======
     # df.to_csv(caminho, index=False, encoding="utf-8")
     
@@ -116,7 +116,7 @@ with SSHTunnelForwarder(
     
     # df = pd.read_sql(query, conn)
     
-    # caminho = r"C:\Users\F8091772\TIM\NFV Infrastructure - BASE\InfraCloud Usuários.csv"
+    # caminho = r"caminho/saida"
     # # ==== exportar CSV =======
     # df.to_csv(caminho, index=False, encoding="utf-8")
     
