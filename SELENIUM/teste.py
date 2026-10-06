@@ -18,14 +18,14 @@ edge_option.add_experimental_option('detach', True)
 edge_option.add_argument("--start-maximized")
 
 # Abrindo Edge local / caminho manual
-service = EdgeService(executable_path=r"C:\Users\F8091772\OneDrive - TIM\PYTHON\Automation\msedgedriver.exe")
+service = EdgeService(executable_path=r"caminho-interno-navegador\msedgedriver.exe")
 driver = webdriver.Edge(service=service, options=edge_option)
 
 # Definindo um tempo para o navegador esperar carregar a pagina
 wait = WebDriverWait(driver, 20)  # tempo máximo de espera
 
 # acessando Altaia
-driver.get("https://altaia.internal.timbrasil.com.br/portal/altaia")
+driver.get("https://altaia.internal.empresa.com.br/portal/altaia")
 
 # ===inserir usuário
 input_user = wait.until(EC.element_to_be_clickable((By.ID, "inputUsername")))
@@ -50,7 +50,7 @@ btn_redeServicos.click
 driver.execute_script("arguments[0].click();", btn_redeServicos)
         
 # tenta clicar em qualquer elemento by xpath
-btn_select_find = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/altaia-quality-management-home/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/altaia-contexts-select-box-tree/altaia-select-box-tree/nossisui-dropdown-panel/div/div/div/div/div/ul/li")))
+btn_select_find = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/altaia-contexts-select-box-tree/altaia-select-box-tree/nossisui-dropdown-panel/div/div/div/div/div/ul/li")))
 #driver.execute_script("arguments[0].scrollIntoView(true);", btn_select_find)
 driver.execute_script("arguments[0].click();", btn_select_find)
 
@@ -65,12 +65,12 @@ clicar_CS_MOVEL = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[contains
 driver.execute_script("arguments[0].click();", clicar_CS_MOVEL)
 
 # Clicar fora
-click_out = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/altaia-quality-management-home/nossisui-header-entity/div[1]/div/h1")))
+click_out = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/nossisui-header-entity/div[1]/div/h1")))
 #driver.execute_script("arguments[0].scrollIntoView(true);", click_out)
 driver.execute_script("arguments[0].click();", click_out)
 
 # clicar no campo novamente
-click_btn_find = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/altaia-quality-management-home/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/altaia-contexts-select-box-tree/altaia-select-box-tree/nossisui-dropdown-panel/div/div/div/div/div/ul/li")))
+click_btn_find = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/altaia-contexts-select-box-tree/altaia-select-box-tree/nossisui-dropdown-panel/div/div/div/div/div/ul/li")))
 #driver.execute_script("arguments[0].scrollIntoView(true);", click_btn_find)
 driver.execute_script("arguments[0].click();", click_btn_find)
 
@@ -80,7 +80,7 @@ driver.execute_script("arguments[0].scrollIntoView(true);", clicar_CUDB)
 driver.execute_script("arguments[0].click();", clicar_CUDB)
 
 # tenta clicar em qualquer elemento by xpath
-btn_explorar = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/altaia-quality-management-home/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/nossisui-button-dropdown/div/button")))
+btn_explorar = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-home/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/nossisui-button-dropdown/div/button")))
 #driver.execute_script("arguments[0].scrollIntoView(true);", btn_explorar)
 driver.execute_script("arguments[0].click();", btn_explorar)
 
