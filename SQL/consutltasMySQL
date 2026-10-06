@@ -1,0 +1,129 @@
+from sshtunnel import SSHTunnelForwarder
+import mysql.connector
+import pandas as pd
+
+SSH_HOST = '10.99.60.174'
+SSH_PORT = 22
+SSH_USER = 'root'
+SSH_PASSWORD = 'infracloud2@23'
+
+MYSQL_HOST = '127.0.0.1'       
+MYSQL_PORT = 3306
+MYSQL_USER = 'root'             
+MYSQL_PASSWORD = 'infracloud2@23' 
+MYSQL_DB = 'vassolutions_controledemandas'    
+
+# criar o túnel SSH e abrir uma porta local que aponta para 127.0.0.1:3306 no servidor
+with SSHTunnelForwarder(
+    (SSH_HOST, SSH_PORT),
+    ssh_username=SSH_USER,
+    ssh_password=SSH_PASSWORD,
+    remote_bind_address=(MYSQL_HOST, MYSQL_PORT),
+    local_bind_address=('127.0.0.1', 3307)  # porta local livre
+) as tunnel:
+
+    # conectar no MySQL ATRAVÉS do túnel
+    conn = mysql.connector.connect(
+        host='127.0.0.1',
+        port=tunnel.local_bind_port,  # 3307
+        user=MYSQL_USER,
+        password=MYSQL_PASSWORD,
+        database=MYSQL_DB
+    )
+
+    print("Conectado com sucesso!")
+
+    # iniciar consultas em SQL ...
+
+    cursor = conn.cursor(dictionary=True)
+
+    #============== LISTAR BANCOS ==================
+    cursor.execute("SHOW TABLES;")
+    tabelas = cursor.fetchall()
+    
+    for tab in tabelas:
+        print(tab)
+    
+    # print(" ")
+    # #============== DEMANDAS ===================
+    # def consulta_demandas():
+    #     print("Consultando demandas...")
+    #     query = "SELECT * FROM demanda WHERE codigo_de = 'aberta';"
+    #     df = pd.read_sql(query, conn)
+    #     return df
+    
+    # #============== AREAS ===================
+    # def consulta_areas():
+    #     print("Consultando áreas...")
+    #     query = "SELECT * FROM area;"
+    #     df = pd.read_sql(query, conn)
+    #     return df
+    
+    # #============== RECEBIDA ===================
+    # def consulta_recebida():
+    #     print("Consultando recebidas...")
+    #     query = "SELECT * FROM recebida;"
+    #     df = pd.read_sql(query, conn)
+    #     return df
+    
+    # # ==== Menu =====
+    # try:
+    #     while True:
+    #         print("Menu de consultas:")
+    #         print("1 - Consultar demandas")
+    #         print("2 - Consultar áreas")
+    #         print("3 - Consultar recebidas")
+    #         print("X - Sair")
+    #         opcao = input("Escolha uma opção: ")
+    #         if opcao == "1":
+    #             #for index, row in consulta_demandas().iterrows():
+    #              #   print(row)
+    #             print(consulta_demandas())
+    #         if opcao == "2":
+    #             # for index, row in consulta_areas().iterrows():
+    #             #     print(row)
+    #             print(consulta_areas())
+    #         if opcao == "3":
+    #             # for index, row in consulta_recebida().iterrows():
+    #             #     print(row)
+    #             print(consulta_recebida())
+    #         if opcao == "x":
+    #             print("Saindo...")
+    #             break
+    #         else:
+    #             print("Opção inválida. Tente novamente.")
+    # except Exception as e:
+    #     print(f"Erro: {e}")
+
+    #df = pd.read_sql(query, conn)
+    
+    # caminho = r"C:\Users\F8091772\TIM\NFV Infrastructure - BASE\InfraCloud Demanda.csv"
+    # # ==== exportar CSV =======
+    # df.to_csv(caminho, index=False)
+    
+    # print("CSV Demandas salvo com sucesso!")
+    
+    
+    
+    # caminho = r"C:\Users\F8091772\TIM\NFV Infrastructure - BASE\InfraCloud Recebida.csv"
+    # # ==== exportar CSV =======
+    # df.to_csv(caminho, index=False, encoding="utf-8")
+    
+    # print("CSV Recebida salvo com sucesso!")
+    
+    #============== USUÁRIO ===================
+    # query = "SELECT * FROM usuario;"
+    
+    # df = pd.read_sql(query, conn)
+    
+    # caminho = r"C:\Users\F8091772\TIM\NFV Infrastructure - BASE\InfraCloud Usuários.csv"
+    # # ==== exportar CSV =======
+    # df.to_csv(caminho, index=False, encoding="utf-8")
+    
+    # print("CSV Usuários salvo com sucesso!\n")
+    
+    # print("Extração concluída!")
+    # cursor.close()
+    # conn.close()
+    
+    

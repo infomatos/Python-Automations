@@ -136,3 +136,73 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Local environment variables and secret configuration
+.env*
+!.env.example
+.envrc
+secrets.json
+secrets.yaml
+secrets.yml
+secrets.toml
+secrets.ini
+credentials.json
+credentials.yaml
+credentials.yml
+credentials.toml
+credentials.ini
+token.json
+client_secret*.json
+service-account*.json
+service_account*.json
+
+# Private keys, certificates, and credential stores
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+.ssh/
+.aws/
+.azure/
+.config/gcloud/
+
+# Machine-specific configuration
+**/.vscode/settings.json
+**/.vscode/launch.json
+*.code-workspace
+*.local
+*.local.*
+local.*.json
+local.*.yaml
+local.*.yml
+local.*.toml
+local.*.ini
+
+# Local business data, exports, and backups
+/APIs/*.json
+data/
+dados/
+exports/
+export/
+reports/
+relatorios/
+backups/
+backup/
+attachments/
+anexos/
+downloads/
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.xlsm
+*.ods
+*.sqlite
+*.sqlite3
+*.db
+*.db-*
+*.bak
+*.backup
+*.dump
