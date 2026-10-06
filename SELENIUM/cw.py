@@ -3,8 +3,8 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-URL = "https://backup-mazzini.internal.timbrasil.com.br/opd/cws_grafana_json/"
-VTOKEN = "9749d6ff559524cb80f8a650228aefb4d4bc3f4d6e4befee7068e60271290516"
+URL = "https://caminhoAPI/opd/cws_grafana_json/"
+VTOKEN = ""
 
 headers = {
     "vtoken": VTOKEN,
