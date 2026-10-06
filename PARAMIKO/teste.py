@@ -1,6 +1,6 @@
 import os
 
-caminho = r'C:\Users\F8091772\OneDrive - TIM\PYTHON\Automation\PARAMIKO'
+caminho = r'interno/ou/de/rede'
 nome_arquivos_master = ['RVTools_tabvCPU.csv', 'RVTools_tabvMemory.csv', 'RVTools_tabvDisk.csv', 'RVTools_tabvInfo.csv']
 
 os.chdir(caminho)
