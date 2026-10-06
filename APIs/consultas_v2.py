@@ -7,15 +7,15 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 apis = [
-    ("https://backup-mazzini.internal.timbrasil.com.br/opd/cws_grafana_json/", "cw.json"),
-    ("https://backup-mazzini.internal.timbrasil.com.br/opd/linhasfo_grafana_json/", "linhasfo.json"),
-    ("https://backup-mazzini.internal.timbrasil.com.br/opd/derivados_grafana_json/", "derivados.json"),
-    ("https://backup-mazzini.internal.timbrasil.com.br/opd/demandas_grafana_json/", "demandas.json"),
+    ("https://opd/cws_grafana_json/", "cw.json"),
+    ("https://linhasfo_grafana_json/", "linhasfo.json"),
+    ("https:/opd/derivados_grafana_json/", "derivados.json"),
+    ("https://demandas_grafana_json/", "demandas.json"),
 ]
 
 def consulta_api(url, nome_arquivo):
     headers = {
-        "Vtoken": "9749d6ff559524cb80f8a650228aefb4d4bc3f4d6e4befee7068e60271290516"
+        "Vtoken": ""
     }
 
     response = requests.post(url, headers=headers, verify=False)
@@ -29,10 +29,10 @@ def consulta_api(url, nome_arquivo):
 
     print(f"\nArquivo {nome_arquivo} criado com sucesso!")
 
-consulta_api("https://backup-mazzini.internal.timbrasil.com.br/opd/cws_grafana_json/", "cw.json")
+consulta_api("https://cws_grafana_json/", "cw.json")
 
-consulta_api("https://backup-mazzini.internal.timbrasil.com.br/opd/linhasfo_grafana_json/", "linhasfo.json")
+consulta_api("https://linhasfo_grafana_json/", "linhasfo.json")
 
-consulta_api("https://backup-mazzini.internal.timbrasil.com.br/opd/derivados_grafana_json/", "derivados.json")
+consulta_api("https://derivados_grafana_json/", "derivados.json")
 
-consulta_api("https://backup-mazzini.internal.timbrasil.com.br/opd/demandas_grafana_json/", "demandas.json")
+consulta_api("https://demandas_grafana_json/", "demandas.json")
