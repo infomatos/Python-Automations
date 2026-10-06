@@ -43,11 +43,11 @@ def main():
 
         wait = WebDriverWait(navegador, 20)  # tempo máximo de espera
 
-        navegador.get('https://altaia.internal.timbrasil.com.br/portal/altaia')
+        navegador.get('https://altaia.internal.empresa.com.br/portal/altaia')
 
         # --- esperar e preencher usuário ---
         input_user = wait.until(EC.element_to_be_clickable((By.ID, "inputUsername")))
-        preencher_campo_com_fallback(navegador, input_user, 'F8091772')
+        preencher_campo_com_fallback(navegador, input_user, 'FXXXXXX')
 
         # clique no next e aguarde o campo senha aparecer
         botao_next = wait.until(EC.element_to_be_clickable((By.ID, "next")))
@@ -55,7 +55,7 @@ def main():
 
         # --- aguardar o carregamento do campo senha (pode ter redirecionamento ou AJAX) ---
         input_pass = wait.until(EC.visibility_of_element_located((By.ID, "inputPassword")))
-        preencher_campo_com_fallback(navegador, input_pass, 'Development@2025.3')
+        preencher_campo_com_fallback(navegador, input_pass, 'senha')
 
         # --- clicar no login ---
         botao_login = wait.until(EC.element_to_be_clickable((By.ID, "login")))
@@ -67,12 +67,12 @@ def main():
         navegador.execute_script("arguments[0].click();", btn_redeServicos)
         
         # tenta clicar em qualquer elemento by xpath
-        btn_select_find = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/altaia-quality-management-home/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/altaia-contexts-select-box-tree/altaia-select-box-tree/nossisui-dropdown-panel/div/div/div/div/div/ul/li")))
+        btn_select_find = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-home/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/altaia-contexts-select-box-tree/altaia-select-box-tree/nossisui-dropdown-panel/div/div/div/div/div/ul/li")))
         navegador.execute_script("arguments[0].scrollIntoView(true);", btn_select_find)
         navegador.execute_script("arguments[0].click();", btn_select_find)
 
         # tenta inserir dado no campo by xpath
-        input_fild = wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/bs-dropdown-container/div/ul/li/div[1]/div/fx-searchbox/div/input")))
+        input_fild = wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/bs-dropdown-container/-searchbox/div/input")))
         navegador.execute_script("arguments[0].scrollIntoView(true);", input_fild)
         preencher_campo_com_fallback(navegador, input_fild, 'Core CS Movel')
 
@@ -82,12 +82,12 @@ def main():
         navegador.execute_script("arguments[0].click();", clicar_CS_MOVEL)
 
         # Clicar fora
-        click_out = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/altaia-quality-management-home/nossisui-header-entity/div[1]/div/h1")))
+        click_out = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/main/altaia-quality-management-home/nossisui-header-entity/div[1]/div/h1")))
         navegador.execute_script("arguments[0].scrollIntoView(true);", click_out)
         navegador.execute_script("arguments[0].click();", click_out)
 
         # clicar no campo novamente
-        click_btn_find = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/altaia-quality-management-home/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/altaia-contexts-select-box-tree/altaia-select-box-tree/nossisui-dropdown-panel/div/div/div/div/div/ul/li")))
+        click_btn_find = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/main/altaia-quality-management-home/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/altaia-contexts-select-box-tree/altaia-select-box-tree/nossisui-dropdown-panel/div/div/div/div/div/ul/li")))
         navegador.execute_script("arguments[0].scrollIntoView(true);", click_btn_find)
         navegador.execute_script("arguments[0].click();", click_btn_find)
 
@@ -97,7 +97,7 @@ def main():
         navegador.execute_script("arguments[0].click();", clicar_CUDB)
 
         # tenta clicar em qualquer elemento by xpath
-        btn_explorar = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/altaia-quality-management-home/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/nossisui-button-dropdown/div/button")))
+        btn_explorar = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/a=altaia-quality-management-home/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/nossisui-button-dropdown/div/button")))
         navegador.execute_script("arguments[0].scrollIntoView(true);", btn_explorar)
         navegador.execute_script("arguments[0].click();", btn_explorar)
 
@@ -107,7 +107,7 @@ def main():
         navegador.execute_script("arguments[0].click();", clik_performance_Cockpits)
 
         # # tenta clicar em qualquer elemento by xpath
-        # btn_select_find = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/altaia-app/altaia-quality-management-main/altaia-quality-management-home/div[1]/altaia-quality-management-context-explorer/altaia-context-explorer/div/div/altaia-contexts-select-box-tree/altaia-select-box-tree/nossisui-dropdown-panel/div/div/div/div/div/ul/li")))
+        # btn_select_find = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]=/altaia-quality-management-home/div[1]/=uality-management-context-explorer/altaia-context-explorer/div/div/altaia-contexts-select-box-tree/altaia-select-box-tree/nossisui-dropdown-panel/div/div/div/div/div/ul/li")))
         # navegador.execute_script("arguments[0].scrollIntoView(true);", btn_select_find)
         # navegador.execute_script("arguments[0].click();", btn_select_find)
 
