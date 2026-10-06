@@ -3,31 +3,31 @@ import os
 
 caminho = r'C:\Users\F8091772\TIM\NFV Infrastructure - RVTools'
 # Prefixo da pasta 00
-PREFIXO_VCSA00 = 'vim-vm01-vcsa00.oss.timbrasil.com.br_'
+PREFIXO_VCSA00 = 'nome-do-vCenter'
 
 ##### credentials ######
-servidor = '10.99.60.174'
+servidor = '00.00.00.000'
 user = 'root'
-senha = 'infracloud2@23'
+senha = 'senha'
 
 ##### conection #######
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh.connect(servidor, username=user, password=senha)
 
-print('\nConectado ao servidor INFRACLOUD.\n')
+print('\nConectado ao servidor NOMESERVIDOR.\n')
 
 ##### INICIO DO PRIMEIRO ATO (Baixar os arquivos e reuni-los em um unico local) #########
 
 ##### Acessar e guardar o diretório atual da semana #####
-stdin, stdout, stderr = ssh.exec_command('cd /home/rvtools/vmware/rvtools; ls -d */ -u')
+stdin, stdout, stderr = ssh.exec_command('cd /caminho; ls -d */ -u')
 lista_dir = stdout.read().decode('utf-8').split()
 diretorio_semana = lista_dir[0].strip('/')
 print('Dirertório atual: ' + diretorio_semana + '\n')
 
 ##### Listando pastas de vCenters #####
 stdin, stdout, stderr = ssh.exec_command(
-    f'cd /home/rvtools/vmware/rvtools/{diretorio_semana}; ls -d */ -u'
+    f'cd /caminho/{diretorio_semana}; ls -d */ -u'
     )
 lista_vCenter = stdout.read().decode('utf-8').split()
 
@@ -36,7 +36,7 @@ for vCenter in lista_vCenter:
    
     #### Lista arquivos dentro do vCenter
     stdin, stdout, stderr = ssh.exec_command(
-        f'cd /home/rvtools/vmware/rvtools/{diretorio_semana}/{vCenter}; ls -u'
+        f'cd /caminho/{diretorio_semana}/{vCenter}; ls -u'
         )
     print('\nDiretório atual: ' + vCenter + '\n')
     arquivos = stdout.read().decode('utf-8').split()
@@ -47,7 +47,7 @@ for vCenter in lista_vCenter:
                 sftp = ssh.open_sftp()
             
             #### caminho no servidor
-                servidor_path = f'/home/rvtools/vmware/rvtools/{diretorio_semana}/{vCenter}/{arquivo}'
+                servidor_path = f'/caminho/{diretorio_semana}/{vCenter}/{arquivo}'
             
             # Se for vcsa00_XXXXXXXX, salva em subpasta separada e com nome original
                 try:
@@ -85,12 +85,12 @@ for vCenter in lista_vCenter:
             
 #### baixar os dois arquivos fora daas pastas
 stdin, stdout, stderr = ssh.exec_command(
-    f'cd /home/rvtools/vmware/rvtools/{diretorio_semana}; ls *.csv'
+    f'cd /caminho/{diretorio_semana}; ls *.csv'
     )
 files = stdout.read().decode('utf-8').split()
 for f in files:
     sftp = ssh.open_sftp()
-    servidor_path = f'/home/rvtools/vmware/rvtools/{diretorio_semana}/{f}'
+    servidor_path = f'/caminho/{diretorio_semana}/{f}'
     
     local_path = os.path.join(caminho, f'{f}')
     
