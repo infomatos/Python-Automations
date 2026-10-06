@@ -2,12 +2,12 @@ import paramiko
 import os
 import traceback
 
-caminho = r'C:\Users\F8091772\OneDrive - TIM\PYTHON\Automation\PARAMIKO'
+caminho = r'local-ou-de-rede'
 
 ##### credentials ######
-servidor = '10.99.60.174'
+servidor = '00.00.00.000'
 user = 'root'
-senha = 'infracloud2@23'
+senha = ''
 
 ARQUIVOS_ALVO = {
     'RVTools_tabvInfo.csv',
@@ -17,7 +17,7 @@ ARQUIVOS_ALVO = {
 }
 
 # Prefixo da pasta especial
-PREFIXO_VCSA00 = 'vim-vm01-vcsa00.oss.timbrasil.com.br_'
+PREFIXO_VCSA00 = 'nome-do-vcenter'
 
 ssh = None
 sftp = None
@@ -35,7 +35,7 @@ try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect(servidor, username=user, password=senha, timeout=20)
-        print('\nConectado ao servidor INFRACLOUD.\n')
+        print('\nConectado ao servidor NOMEDOSERVIDOR.\n')
     except Exception as e:
         print('[ERRO] Falha ao conectar via SSH.')
         print(f'       Motivo: {e}')
@@ -63,7 +63,7 @@ try:
     ##### Listando pastas de vCenters #####
     try:
         stdin, stdout, stderr = ssh.exec_command(
-            f'cd /home/rvtools/vmware/rvtools/{diretorio_semana}; ls -d */ -u'
+            f'cd /caminho/{diretorio_semana}; ls -d */ -u'
         )
         lista_vCenter = stdout.read().decode('utf-8', errors='replace').split()
         erro_vc = stderr.read().decode('utf-8', errors='replace').strip()
@@ -93,7 +93,7 @@ try:
         # Lista arquivos dentro do vCenter
         try:
             stdin, stdout, stderr = ssh.exec_command(
-                f'cd /home/rvtools/vmware/rvtools/{diretorio_semana}/{vCenter}; ls -u'
+                f'cd /caminho/{diretorio_semana}/{vCenter}; ls -u'
             )
             print('\nDiretório atual: ' + vCenter + '\n')
 
@@ -111,7 +111,7 @@ try:
             if arquivo not in ARQUIVOS_ALVO:
                 continue
 
-            servidor_path = f'/home/rvtools/vmware/rvtools/{diretorio_semana}/{vCenter}/{arquivo}'
+            servidor_path = f'/caminho/{diretorio_semana}/{vCenter}/{arquivo}'
 
             # ✅ REGRA NOVA:
             # Se for vcsa00_XXXXXXXX, salva em subpasta separada e com nome original
