@@ -6,13 +6,13 @@ import pandas as pd
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 apis = [
-    #("https://backup-mazzini.internal.timbrasil.com.br/opd/cws_grafana_json/", "cw.csv"),
-    #("https://backup-mazzini.internal.timbrasil.com.br/opd/linhasfo_grafana_json/", "linhasfo.csv"),
-    ("https://backup-mazzini.internal.timbrasil.com.br/opd/derivados_grafana_json/", "derivados.csv"),
-    #("https://backup-mazzini.internal.timbrasil.com.br/opd/demandas_grafana_json/", "demandas.csv"),
+    #("https:///cws_grafana_json/", "cw.csv"),
+    #("https:///linhasfo_grafana_json/", "linhasfo.csv"),
+    ("https://derivados_grafana_json/", "derivados.csv"),
+    #("https:///opd/demandas_grafana_json/", "demandas.csv"),
 ]
 
-caminho = "C:\\Users\\F8091772\\TIM\\NFV Infrastructure - Consumo Contratos (Base KS)"
+caminho = "caminho-interno/ou-de-rede"
 
 def transforma_json_em_csv(dados):
     registros = dados.get("queryset", dados) if isinstance(dados, dict) else dados
@@ -25,7 +25,7 @@ def transforma_json_em_csv(dados):
 
 def consulta_api(url, nome_arquivo):
     headers = {
-        "Vtoken": "9749d6ff559524cb80f8a650228aefb4d4bc3f4d6e4befee7068e60271290516"
+        "Vtoken": ""
     }
 
     response = requests.post(url, headers=headers, verify=False)
