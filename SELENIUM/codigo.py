@@ -15,9 +15,9 @@ navegador.get('https://dlp.hashtagtreinamentos.com/python/minicurso/minicurso-au
 
 navegador.find_element('xpath', '//*[@id="BotaoPopup2"]').click()
 
-navegador.find_element('xpath', '//*[@id="firstname"]').send_keys('Elias Martins')
+navegador.find_element('xpath', '//*[@id="firstname"]').send_keys('Nome')
 
-navegador.find_element('xpath', '//*[@id="email"]').send_keys("eliasmatos@ymail.com")
+navegador.find_element('xpath', '//*[@id="email"]').send_keys("email")
 
 navegador.find_element('xpath', '//*[@id="phone"]').send_keys('2199999-8888')
 
